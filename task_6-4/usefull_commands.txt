@@ -1,0 +1,9 @@
+docker run --rm -d --name postgres --net=app --env-file .env postgres
+	file .env: 
+               POSTGRES_USER=user
+               POSTGRES_PASSWORD=password
+               POSTGRES_DB=db
+
+docker run --rm --name app --net=app --env-file $(pwd)/app/.env kcoursedocker/task-6.4
+
+docker exec -it postgres psql --username user --dbname db
