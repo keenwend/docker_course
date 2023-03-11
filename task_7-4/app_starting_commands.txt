@@ -1,0 +1,13 @@
+net
+docker network create app7
+
+postgres
+docker run --rm -d --name postgres --net=app7 --env-file postgres.env postgres
+
+back
+docker run --rm -d --name backend --env-file back.env --net=app7 kcoursedocker/task-7.4-back 
+
+front
+docker run --rm -d --name frontend --net=app7 -p 80:80 kcoursedocker/task-7.4-front
+
+
